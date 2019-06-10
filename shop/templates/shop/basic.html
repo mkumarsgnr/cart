@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>{%block title%}{% endblock %}</title>
+    <style>
+        {%block css%}{%endblock%}
+  </style>
+</head>
+<!-- style="    position: fixed;
+    width: 100% !important; 
+    margin-top: -16px;" -->
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="    position: fixed;
+    width: 100% !important; 
+    margin-top: -16px;  z-index:1; " >
+        <a class="navbar-brand" href="/shop">My Awesome Cart</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/shop">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="/shop/tracker">Tracker</a>
+                <a class="nav-item nav-link" href="/shop/about">About Us</a>                
+                <a class="nav-item nav-link" href="/blog">Blogs</a>
+                <a class="nav-item nav-link" href="/shop/contact">Contact Us</a>
+            </div>
+        </div>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <a href="/shop/checkout"><button type="button" class="btn btn-secondary mx-2" data-html="true" id="popcart" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+sagittis lacus vel augue laoreet rutrum faucibus.">
+            Cart(<span id="cart">0</span>)
+        </button></a>
+    </nav>
+    {%block body%}{%endblock%}
+    
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    {%block js%}
+    {%endblock%}
+    <script>
+        if (localStorage.getItem('cart') == null) {
+            var cart = {};
+        } else {
+            cart = JSON.parse(localStorage.getItem('cart'));
+        }
+        var sum =0;
+        for (items in cart){
+            let qty = cart[items][0];
+            sum =sum+qty;
+        }
+         document.getElementById('cart').innerHTML = sum;
+    </script>
+</body>
+
+</html>
+
+
